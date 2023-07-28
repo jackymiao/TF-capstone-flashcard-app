@@ -15,14 +15,12 @@ function AddCard({deckName, addCard, url, cardNum, deckId}){
     const [click, setClick] = useState("");
 
     function doneButton(event){
-
-        event.preventDefault();
-        setClick(event.target.name)
+        setClick(event.target.name);
+    
     }
     function saveButton(event){
-        event.preventDefault();
-     
-       setClick(event.target.name)
+       setClick(event.target.name);
+
     }
 
     const changeHandler = (event) =>{
@@ -34,6 +32,7 @@ function AddCard({deckName, addCard, url, cardNum, deckId}){
 
     const submitHandler = (event) =>{
         event.preventDefault();
+        console.log("submit button clicked")
         addCard(formData)
         click === "done"?history.push("/"):history.push(url);
     }

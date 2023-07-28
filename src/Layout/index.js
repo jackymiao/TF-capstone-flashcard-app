@@ -22,7 +22,8 @@ function Layout() {
   useEffect(()=>{
     setDeckData(()=>data.decks);
     setCardData(()=>data.cards);
-  },[])
+    console.log("data changed")
+  },deckData)
 
 
  
@@ -45,6 +46,16 @@ function Layout() {
     ])
   }
 
+  function editCard(currentCard, newCard){
+    let updatedCardData = cardData.map(c=>c===currentCard?newCard:c)
+    setCardData(updatedCardData)
+  }
+
+  function deleteDeck(deckToDelete){
+    let filteredDeck = deckData.filter(d=>d !== deckToDelete);
+    setDeckData(filteredDeck);
+  }
+
   return (
     <div>
       <Header />
@@ -61,7 +72,7 @@ function Layout() {
 
           <Route path="/decks/:deckId">
             <NavBar currentUrl={currentUrl} />
-            <DeckProfile deckData={deckData} cardData={cardData} editDeck={editDeck} setCurrentUrl={setCurrentUrl} addCard={addCard} />
+            <DeckProfile deckData={deckData} cardData={cardData} editDeck={editDeck} setCurrentUrl={setCurrentUrl} addCard={addCard} editCard={editCard} deleteDeck={deleteDeck} />
           </Route>
 
           <Route>

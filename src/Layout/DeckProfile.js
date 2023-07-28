@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
   Link,
+  useHistory
 } from "react-router-dom";
 
 import CardList from "./CardList";
@@ -12,8 +13,9 @@ import EditDeck from "./EditDeck";
 import StudyDeck from "./StudyDeck";
 import NavBar from "./NavBar";
 import AddCard from "./AddCard";
+import EditCard from "./EditCard";
 
-function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard}) {
+function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard, editCard, deleteDeck}) {
   const { url } = useRouteMatch();
   setCurrentUrl(() => url);
   const { deckId } = useParams();
@@ -21,6 +23,13 @@ function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard}) {
   const cardNum = cardData.filter(
     (card) => card.deckId === Number(deckId)
   ).length;
+  const history = useHistory();
+  const deleteClick = () =>{
+    deleteDeck(currentDeck)
+    console.log("button clicked");
+    history.goBack();
+  }
+
   return (
     <div>
       <Switch>
@@ -37,9 +46,9 @@ function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard}) {
           <button>
             <Link to={`${url}/cards/new`}>Add cards</Link>
           </button>
-          <button>Delete</button>
+          <button type="button" onClick={deleteClick}>Delete</button>
           <h1>Cards</h1>
-          <CardList cardData={cardData} deckId={deckId} />
+          <CardList cardData={cardData} deckId={deckId} url={url} />
         </Route>
         <Route path={`${url}/edit`}>
           <EditDeck
@@ -52,8 +61,13 @@ function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard}) {
           <StudyDeck deckId={deckId} setCurrentUrl={setCurrentUrl} />
         </Route>
         <Route path={`${url}/cards/new`}>
-          <AddCard addCard={addCard} deckName={currentDeck.name} url={url} cardNum={cardNum} deckId={deckId}/>
+          <AddCard addCard={addCard} deckName={currentDeck.name} url={url} cardNum={cardNum} deckId={deckId} editCard={editCard}/>
         </Route>
+
+        <Route path={`${url}/cards/:cardId/edit`}>
+          <EditCard cardData={cardData} deckId={deckId} url={url} editCard={editCard} />
+        </Route>
+
       </Switch>
     </div>
   );

@@ -1,6 +1,10 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
-function CardList({ cardData, deckId }) {
+
+function CardList({ cardData, deckId, url }) {
+
+
   return (
     <div>
       {cardData
@@ -9,7 +13,11 @@ function CardList({ cardData, deckId }) {
           <div key={card.id}>
             <p>{card.front}</p>
             <p>{card.back}</p>
-            <button>Edit</button>
+            <button>
+              <Link to={`${url}/cards/${card.id}/edit`}>
+              Edit
+              </Link>
+              </button>
             <button>delete</button>
           </div>
         ))}
@@ -18,3 +26,5 @@ function CardList({ cardData, deckId }) {
 }
 
 export default CardList;
+
+
