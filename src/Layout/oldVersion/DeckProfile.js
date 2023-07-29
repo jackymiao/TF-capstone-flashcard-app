@@ -14,6 +14,7 @@ import StudyDeck from "./StudyDeck";
 import NavBar from "./NavBar";
 import AddCard from "./AddCard";
 import EditCard from "./EditCard";
+import CardListApi from "./CardListApi";
 
 function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard, editCard, deleteDeck}) {
   const { url } = useRouteMatch();
@@ -24,11 +25,11 @@ function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard, edi
     (card) => card.deckId === Number(deckId)
   ).length;
   const history = useHistory();
-  const deleteClick = () =>{
-    deleteDeck(currentDeck)
-    console.log("button clicked");
-    history.goBack();
-  }
+  // const deleteClick = () =>{
+  //   deleteDeck(currentDeck)
+  //   console.log("button clicked");
+  //   history.goBack();
+  // }
 
   return (
     <div>
@@ -46,8 +47,9 @@ function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard, edi
           <button>
             <Link to={`${url}/cards/new`}>Add cards</Link>
           </button>
-          <button type="button" onClick={deleteClick}>Delete</button>
+          <button type="button" >Delete</button>
           <h1>Cards</h1>
+          <CardListApi deckId/>
           <CardList cardData={cardData} deckId={deckId} url={url} />
         </Route>
         <Route path={`${url}/edit`}>

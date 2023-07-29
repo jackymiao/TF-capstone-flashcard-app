@@ -1,60 +1,47 @@
-import React, {useState, useEffect} from "react";
-import {Switch, Route, useRouteMatch} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import {
+  Switch,
+  Route,
+  useRouteMatch,
+  Link,
+  useParams
+} from "react-router-dom";
 
 import Header from "./Header";
 import NotFound from "./NotFound";
-import DeckList from './DeckList';
-import AddDeck from "./AddDeck";
-import DeckProfile from "./DeckProfile";
-import data from "../data/db.json"
-import NavBar from "./NavBar";
+import {
+  listDecks,
+  createDeck,
+  readDeck,
+  updateDeck,
+  deleteDeck,
+  createCard,
+  readCard,
+  updateCard,
+  deleteCard,
+} from "../utils/api/index";
+
+import DeckList from "../Deck/DeckList";
+import DeckProfile from "../Deck/DeckProfile";
+import AddDeck from "../Deck/AddDeck";
+
+
 
 
 function Layout() {
-  const[deckData, setDeckData] = useState(data.decks);
-  const[cardData, setCardData] = useState(data.cards);
-  const [currentUrl, setCurrentUrl] = useState("");
+  const {url} = useRouteMatch();
+  const [deckData, setDeckData] = useState([]);
 
 
 
-  
+  useEffect(() => {
+    listDecks().then((dataFromApi) => setDeckData(dataFromApi));
+  }, []);
 
-  useEffect(()=>{
-    setDeckData(()=>data.decks);
-    setCardData(()=>data.cards);
-    console.log("data changed")
-  },deckData)
-
-
- 
   function addDeck(newDeck){
-    setDeckData([
-      ...deckData,
-      newDeck
-    ])
+    createDeck(newDeck).then();
   }
 
-  function editDeck(currentDeck, newDeckData){
-    let updatedDeckData = deckData.map(d=>d===currentDeck?newDeckData:d);
-    setDeckData(updatedDeckData)
-  }
-
-  function addCard(newCard){
-    setCardData([
-      ...cardData,
-      newCard
-    ])
-  }
-
-  function editCard(currentCard, newCard){
-    let updatedCardData = cardData.map(c=>c===currentCard?newCard:c)
-    setCardData(updatedCardData)
-  }
-
-  function deleteDeck(deckToDelete){
-    let filteredDeck = deckData.filter(d=>d !== deckToDelete);
-    setDeckData(filteredDeck);
-  }
 
   return (
     <div>
@@ -63,20 +50,32 @@ function Layout() {
         {/* TODO: Implement the screen starting here */}
         <Switch>
           <Route path="/" exact>
-            <DeckList deckData={deckData} cardData={cardData} />
-          </Route>
-          <Route path="/decks/new">
-          <NavBar currentUrl={currentUrl} />
-            <AddDeck setDeckData={setDeckData} addDeck={addDeck} deckData={deckData} />
+            <DeckList deckData={deckData} Link={Link} deleteDeck={deleteDeck} />
           </Route>
 
-          <Route path="/decks/:deckId">
-            <NavBar currentUrl={currentUrl} />
-            <DeckProfile deckData={deckData} cardData={cardData} editDeck={editDeck} setCurrentUrl={setCurrentUrl} addCard={addCard} editCard={editCard} deleteDeck={deleteDeck} />
+          <Route path="/decks/new">
+            <AddDeck addDeck={addDeck} homeUrl={url} />
           </Route>
+          <Route path="/decks/:deckId">
+            <DeckProfile
+              Switch={Switch}
+              Route={Route}
+              useRouteMatch={useRouteMatch}
+              useParams={useParams}
+              useEffect={useEffect}
+              useState={useState}
+              readDeck={readDeck}
+              createCard={createCard}ß
+              updateCard={updateCard}
+              readCard={readCard}
+              deleteCard={deleteCard}
+              updateDeck={updateDeck}
+            />
+          </Route>
+      
 
           <Route>
-        <NotFound />
+            <NotFound />
           </Route>
         </Switch>
       </div>
