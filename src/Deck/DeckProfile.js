@@ -5,6 +5,8 @@ import AddCard from "../Deck/AddCard";
 import EditCard from "../Deck/EditCard";
 import EditDeck from "../Deck/EditDeck";
 import Study from "../Deck/Study";
+import "./DeckProfile.css";
+
 
 function DeckProfile({
   Switch,
@@ -19,12 +21,12 @@ function DeckProfile({
   readCard,
   deleteCard,
   updateDeck,
-  setCurrentPath
+  setCurrentPath,
 }) {
   const { url } = useRouteMatch();
   const { deckId } = useParams();
   let location = useLocation();
- 
+
   const [deckData, setDeckData] = useState([]);
   const [cardData, setCardData] = useState([]);
 
@@ -33,15 +35,14 @@ function DeckProfile({
     readDeck(deckId)
       .then((deck) => deck.cards)
       .then((cards) => setCardData(cards));
-  }, [location, cardData]);
-  const cardNum = cardData.length;
+  }, [location]);
 
+
+  
+  const cardNum = cardData.length;
   function addCard(newCard) {
     createCard(deckId, newCard).then();
-    setCardData([
-        ...cardData,
-        newCard
-      ])
+    setCardData([...cardData, newCard]);
   }
 
   function editCard(newCard) {
@@ -49,35 +50,55 @@ function DeckProfile({
   }
 
   function deleteCardById(cardId) {
-    
-    deleteCard(cardId).then();
-    const updatedCardData = cardData.filter(c=>c.id !== Number(cardId));
-    setCardData(()=>updatedCardData);
+    if(window.confirm("Delete this card?\nYou will not be able to recover it.")){
+      deleteCard(cardId).then();
+      const updatedCardData = cardData.filter((c) => c.id !== Number(cardId));
+      setCardData(() => updatedCardData);
+    } 
+
   }
 
   function editDeck(updatedDeck) {
     updateDeck(updatedDeck).then();
   }
 
-
-
   return (
     <div>
       <Switch>
         <Route path={`${url}`} exact>
-          <h1>{deckData.name}</h1>
-          <p>{deckData.description}</p>
-          <p>{cardNum} cards</p>
-          <button>
-            <Link to={`${url}/edit`}>Edit</Link>
-          </button>
-          <button>
-            <Link to={`${url}/study`}>Study</Link>
-          </button>
-          <button>
-            <Link to={`${url}/cards/new`}>Add cards</Link>
-          </button>
-          <button type="button">Delete</button>
+          <div className="card-body border">
+            <h1 className="card-title">{deckData.name}</h1>
+            <p className="card-text">{deckData.description}</p>
+
+            <div
+              className="btn-toolbar justify-content-between"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <div className="btn-group" role="group" aria-label="First group">
+                <button className="btn btn-secondary button rounded">
+                  <Link to={`${url}/edit`} className="text-white">
+                    Edit
+                  </Link>
+                </button>
+                <button className="btn btn btn-primary rounded button">
+                  <Link to={`${url}/study`} className="text-white">
+                    Study
+                  </Link>
+                </button>
+                <button className="btn btn btn-primary rounded">
+                  <Link to={`${url}/cards/new`} className="text-white">
+                    Add cards
+                  </Link>
+                </button>
+              </div>
+              <div className="btn-group">
+                <button type="button" className="btn btn-danger text-white">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
           <h1>Cards</h1>
           <CardList
             cardData={cardData}
@@ -106,8 +127,8 @@ function DeckProfile({
         </Route>
 
         <Route path={`${url}/study`}>
-            <Study cardData={cardData} name={deckData.name} cardNum={cardNum}/>
-          </Route>
+          <Study cardData={cardData} name={deckData.name} cardNum={cardNum} url={url} />
+        </Route>
       </Switch>
     </div>
   );

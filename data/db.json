@@ -48,10 +48,16 @@
       "id": 5
     },
     {
-      "deckId": 1,
-      "front": "a new card",
-      "back": "a new card back",
+      "deckId": 3,
+      "front": "card 1",
+      "back": "card1",
       "id": 6
+    },
+    {
+      "deckId": 3,
+      "front": "card 2",
+      "back": "card 2",
+      "id": 7
     }
   ]
 }

@@ -28,28 +28,40 @@ function EditDeck({ setCurrentPath, editDeck, currentDeck}) {
       <div>
         <h1>Edit Deck</h1>
         <form onSubmit={submitHandler}>
-          <label>
+
+          <div className="mb-3">
+          <label htmlFor="name" className="form-label">
             Name:
+            </label>
             <input
               type="text"
               name="name"
               id="name"
               value={formData.name}
               onChange={changeHandler}
+              className="form-control"
             />
-          </label>
-          <label>
+
+          </div>
+          <div className="mb-3">
+          <label htmlFor="description" className="form-label">
             Description:
+            </label>
             <textarea
               type="text"
               name="description"
               id="description"
               value={formData.description}
               onChange={changeHandler}
+              className="form-control"
             />
-          </label>
-          <button type="button" onClick={()=>history.goBack()}>Cancel</button>
-          <button type="submit">Submit</button>
+
+          </div>
+          <div>
+
+          <button type="button" onClick={()=>history.goBack()} className="btn btn-secondary button">Cancel</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
+          </div>
         </form>
       </div>
     );
