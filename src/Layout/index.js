@@ -4,7 +4,8 @@ import {
   Route,
   useRouteMatch,
   Link,
-  useParams
+  useParams,
+  useLocation
 } from "react-router-dom";
 
 import Header from "./Header";
@@ -24,6 +25,7 @@ import {
 import DeckList from "../Deck/DeckList";
 import DeckProfile from "../Deck/DeckProfile";
 import AddDeck from "../Deck/AddDeck";
+import BreadCrumb from "../Deck/BreadCrumb";
 
 
 
@@ -31,12 +33,16 @@ import AddDeck from "../Deck/AddDeck";
 function Layout() {
   const {url} = useRouteMatch();
   const [deckData, setDeckData] = useState([]);
+  let location = useLocation();
+
+
+  
 
 
 
   useEffect(() => {
     listDecks().then((dataFromApi) => setDeckData(dataFromApi));
-  }, []);
+  }, [location]);
 
   function addDeck(newDeck){
     createDeck(newDeck).then();
@@ -54,9 +60,11 @@ function Layout() {
           </Route>
 
           <Route path="/decks/new">
+            <BreadCrumb location={location} decks={deckData} />
             <AddDeck addDeck={addDeck} homeUrl={url} />
           </Route>
           <Route path="/decks/:deckId">
+          <BreadCrumb location={location} decks={deckData} />
             <DeckProfile
               Switch={Switch}
               Route={Route}

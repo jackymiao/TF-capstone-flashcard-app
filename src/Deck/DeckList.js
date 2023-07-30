@@ -27,9 +27,6 @@ function DeckList({ deckData, Link, deleteDeck }) {
     <div>
       <div>
         <button>
-          <Link to={`/`}>Home</Link>
-        </button>
-        <button>
           <Link to="/decks/new">Add Deck</Link>
         </button>
 

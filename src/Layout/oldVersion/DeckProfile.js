@@ -20,7 +20,7 @@ function DeckProfile({ deckData, cardData, setCurrentUrl, editDeck, addCard, edi
   const { url } = useRouteMatch();
   setCurrentUrl(() => url);
   const { deckId } = useParams();
-  const currentDeck = deckData.find((deck) => deck.id === Number(deckId));
+  //const currentDeck = deckData.find((deck) => deck.id === Number(deckId));
   const cardNum = cardData.filter(
     (card) => card.deckId === Number(deckId)
   ).length;

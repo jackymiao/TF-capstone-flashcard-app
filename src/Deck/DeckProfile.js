@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch, useLocation } from "react-router-dom";
 import CardList from "../Deck/CardList";
 import AddCard from "../Deck/AddCard";
 import EditCard from "../Deck/EditCard";
@@ -19,11 +19,11 @@ function DeckProfile({
   readCard,
   deleteCard,
   updateDeck,
-  setCurrentPath,
-  currentPath
+  setCurrentPath
 }) {
   const { url } = useRouteMatch();
   const { deckId } = useParams();
+  let location = useLocation();
  
   const [deckData, setDeckData] = useState([]);
   const [cardData, setCardData] = useState([]);
@@ -33,15 +33,15 @@ function DeckProfile({
     readDeck(deckId)
       .then((deck) => deck.cards)
       .then((cards) => setCardData(cards));
-  }, [currentPath]);
+  }, [location, cardData]);
   const cardNum = cardData.length;
 
   function addCard(newCard) {
     createCard(deckId, newCard).then();
-    // setCardData([
-    //     ...cardData,
-    //     newCard
-    //   ])
+    setCardData([
+        ...cardData,
+        newCard
+      ])
   }
 
   function editCard(newCard) {
@@ -49,12 +49,17 @@ function DeckProfile({
   }
 
   function deleteCardById(cardId) {
+    
     deleteCard(cardId).then();
+    const updatedCardData = cardData.filter(c=>c.id !== Number(cardId));
+    setCardData(()=>updatedCardData);
   }
 
   function editDeck(updatedDeck) {
     updateDeck(updatedDeck).then();
   }
+
+
 
   return (
     <div>
