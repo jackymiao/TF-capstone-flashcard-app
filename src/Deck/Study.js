@@ -36,11 +36,11 @@ function Study({ cardData, name, cardNum, url }) {
         <div className="card-body border">
           <h2 className="card-title">Not enough cards.</h2>
           <p className="card-text">
-            You need at least 3 carads to study. There are 2 cards in this deck.
+            You need at least 3 carads to study. There are {cardData.length} cards in this deck.
           </p>
           <button className="btn btn btn-primary rounded button">
             <Link to={`${url}/cards/new`} className="text-white">
-              Add Cards
+            &#10010; Add Cards
             </Link>
           </button>
         </div>

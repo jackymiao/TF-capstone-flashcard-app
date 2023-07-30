@@ -6,6 +6,7 @@ import {
   Link,
   useParams,
   useLocation,
+  useHistory
 } from "react-router-dom";
 
 import Header from "./Header";
@@ -31,6 +32,7 @@ function Layout() {
   const { url } = useRouteMatch();
   const [deckData, setDeckData] = useState([]);
   let location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     listDecks().then((dataFromApi) => setDeckData(dataFromApi));
@@ -40,6 +42,16 @@ function Layout() {
     createDeck(newDeck).then();
   }
 
+  const deleteHandler = (event) => {
+    console.log(event.target.id)
+    if(window.confirm("Delete this deck?\nYou will not be able to recover it.")){
+      deleteDeck(event.target.id).then();
+      history.goBack();
+      const updatedDeckData = deckData.filter((d) => d.id !== Number(event.target.id));
+      setDeckData(() => updatedDeckData);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -47,7 +59,7 @@ function Layout() {
         {/* TODO: Implement the screen starting here */}
         <Switch>
           <Route path="/" exact>
-            <DeckList deckData={deckData} Link={Link} deleteDeck={deleteDeck} />
+            <DeckList deckData={deckData} Link={Link} deleteDeck={deleteDeck} setDeckData={setDeckData} />
           </Route>
 
           <Route path="/decks/new">
@@ -70,6 +82,7 @@ function Layout() {
               readCard={readCard}
               deleteCard={deleteCard}
               updateDeck={updateDeck}
+              deleteDeck={deleteDeck}
             />
           </Route>
 

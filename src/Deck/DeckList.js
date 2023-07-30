@@ -4,9 +4,13 @@ import { Switch, Route } from "react-router-dom";
 
 import "./DeckList.css";
 
-function DeckList({ deckData, Link, deleteDeck }) {
+function DeckList({ deckData, Link, deleteDeck, setDeckData}) {
   const deleteHandler = (event) => {
-    deleteDeck(event.target.id).then();
+    if(window.confirm("Delete this deck?\nYou will not be able to recover it.")){
+      deleteDeck(event.target.id).then();
+      const updatedDeckData = deckData.filter((c) => c.id !== Number(event.target.id));
+      setDeckData(() => updatedDeckData);
+    }
   };
 
   const deckList = deckData.map((deck) => (

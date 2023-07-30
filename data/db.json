@@ -11,14 +11,9 @@
       "id": 2
     },
     {
-      "name": "new deck 3",
-      "description": "this is new deck",
-      "id": 3
-    },
-    {
       "name": "this is a new deck",
-      "description": "this is the description of new deck",
-      "id": 4
+      "description": "this is a new deck",
+      "id": 3
     }
   ],
   "cards": [
@@ -51,18 +46,6 @@
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
       "id": 5
-    },
-    {
-      "deckId": 3,
-      "front": "card 1",
-      "back": "card1",
-      "id": 6
-    },
-    {
-      "deckId": 3,
-      "front": "card 2",
-      "back": "card 2",
-      "id": 7
     }
   ]
 }
