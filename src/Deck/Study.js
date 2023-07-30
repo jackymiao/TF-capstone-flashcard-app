@@ -87,7 +87,8 @@ function Study({ cardData, name, cardNum, url }) {
 
   return (
     <div>
-      <h1>{name}: Study</h1>
+      <h1>{`${name}`}</h1>
+      <h1>Study</h1>
       <div className="card">
         <div className="card-body border">
           {renderStudyCard(chooseCardId, cardData)}

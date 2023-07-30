@@ -35,12 +35,13 @@ function AddCard({ deckName, addCard, deckId, setCurrentPath, url }) {
 
   return (
     <div>
-      <h1>{deckName}: Add Card</h1>
+      <h1>{`${deckName}`}</h1>
+      <h1>Add Card</h1>
       <form onSubmit={submitHandler}>
         <div className="mb-3">
-        <label htmlFor="front" className="form-label">
-          Front
-        </label>
+          <label htmlFor="front" className="form-label">
+            Front
+          </label>
           <textarea
             name="front"
             id="front"
@@ -50,12 +51,11 @@ function AddCard({ deckName, addCard, deckId, setCurrentPath, url }) {
             placeholder="Front side of card"
             className="form-control"
           />
-
         </div>
         <div className="mb-3">
-        <label htmlFor="back" className="form-label">
-          Back
-        </label>
+          <label htmlFor="back" className="form-label">
+            Back
+          </label>
           <textarea
             name="back"
             id="back"
@@ -65,15 +65,22 @@ function AddCard({ deckName, addCard, deckId, setCurrentPath, url }) {
             placeholder="Back side of card"
             className="form-control"
           />
-
-</div>
-<div>
-
-</div>
-        <button name="done" type="submit" onClick={doneButton} className="btn btn-secondary button">
+        </div>
+        
+        <button
+          name="done"
+          type="submit"
+          onClick={doneButton}
+          className="btn btn-secondary button"
+        >
           Done
         </button>
-        <button name="save" type="submit" onClick={saveButton} className="btn btn-primary">
+        <button
+          name="save"
+          type="submit"
+          onClick={saveButton}
+          className="btn btn-primary"
+        >
           Save
         </button>
       </form>

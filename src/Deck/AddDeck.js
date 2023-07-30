@@ -30,28 +30,40 @@ function AddDeck({addDeck, homeUrl}) {
 
   return (
     <div>
+      <h1>Create Deck</h1>
       <form onSubmit={submitHandler}>
-        <label>
+
+<div className="mb-3">
+        <label htmlFor="name" className="form-label">
           Name
+          </label>
           <input
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={changeHandler}
+            className="form-control"
           />
-        </label>
-        <label>
+
+</div>
+<div className="mb-3">
+        <label htmlFor="description" className="form-label">
           Description
+          </label>
           <textarea
             type="text"
             id="description"
             name="description"
             value={formData.description}
             onChange={changeHandler}
+            className="form-control"
           />
-        </label>
-        <button type="submit">Submit</button>
+
+</div>
+<button type="button" onClick={()=>history.push("/")} className="btn btn-secondary button">Cancel</button>
+
+        <button type="submit" className="btn btn-primary button">Submit</button>
       </form>
     </div>
   );
