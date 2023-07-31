@@ -105,4 +105,9 @@ function Study({ cardData, name, cardNum, url }) {
   );
 }
 
+//{flipped&&<div>{card[chooseCardId].back}</div>}
+//{!flipped&&<div>{card[chooseCardId].front}</div>}
+//<button>Flip</button>
+//{flipped&&<button>Next</button>}
+
 export default Study;
