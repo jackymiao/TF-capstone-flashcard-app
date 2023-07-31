@@ -23,6 +23,12 @@
       "front": "Which of the following is an example of metadata about a webpage?",
       "back": "The title of the webpage",
       "id": 2
+    },
+    {
+      "deckId": 1,
+      "front": "card1",
+      "back": "card1 back",
+      "id": 3
     }
   ]
 }
