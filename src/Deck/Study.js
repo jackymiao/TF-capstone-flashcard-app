@@ -105,9 +105,15 @@ function Study({ cardData, name, cardNum, url }) {
   );
 }
 
+//const noCard = <div>content</div>
+
 //{flipped&&<div>{card[chooseCardId].back}</div>}
 //{!flipped&&<div>{card[chooseCardId].front}</div>}
 //<button>Flip</button>
 //{flipped&&<button>Next</button>}
 
+/*function content(){
+if(chooseCardId < cardNum -1){return content} else{return noCard}
+}
+*/
 export default Study;
