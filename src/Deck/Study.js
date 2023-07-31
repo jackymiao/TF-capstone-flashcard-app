@@ -9,8 +9,12 @@ function Study({ cardData, name, cardNum, url }) {
   }
 
   function nextHandler() {
-    chooseCardId < cardNum ? setChooseCardId(() => chooseCardId + 1) : reset();
     setFliped(false);
+    
+    if(chooseCardId >= cardData.length-1) {
+      return confirmPop();
+    } 
+    chooseCardId < cardNum ? setChooseCardId(() => chooseCardId + 1) : reset();
   }
 
   const [fliped, setFliped] = useState(false);
@@ -19,12 +23,15 @@ function Study({ cardData, name, cardNum, url }) {
   }
 
   function confirmPop() {
+ 
     if (
+      
       window.confirm(
         "Restart cards? \nClick 'cancel' to return to the home page."
       )
     ) {
-      return reset();
+      reset()
+      return <div>string loading</div>;
     } else {
       return (window.location.href = "/");
     }
@@ -45,9 +52,9 @@ function Study({ cardData, name, cardNum, url }) {
           </button>
         </div>
       );
-    } else if (chooseCardId >= cardData.length) {
-      return confirmPop();
-    } else {
+    }
+   
+     else {
       return (
         <div>
           <h3 className="card-title">
@@ -84,7 +91,7 @@ function Study({ cardData, name, cardNum, url }) {
       );
     }
   }
-
+  
   return (
     <div>
       <h1>{`${name}`}</h1>

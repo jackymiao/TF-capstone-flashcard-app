@@ -38,19 +38,19 @@ function Layout() {
     listDecks().then((dataFromApi) => setDeckData(dataFromApi));
   }, [location]);
 
+  // useEffect(() => {
+  //   listDecks().then((dataFromApi) => setDeckData(dataFromApi));
+  // }, [deckData]);
+
+
   function addDeck(newDeck) {
-    createDeck(newDeck).then();
+    createDeck(newDeck).then(()=>
+    listDecks().then((dataFromApi) => setDeckData(dataFromApi))
+    );
+
   }
 
-  const deleteHandler = (event) => {
-    console.log(event.target.id)
-    if(window.confirm("Delete this deck?\nYou will not be able to recover it.")){
-      deleteDeck(event.target.id).then();
-      history.goBack();
-      const updatedDeckData = deckData.filter((d) => d.id !== Number(event.target.id));
-      setDeckData(() => updatedDeckData);
-    }
-  };
+
 
   return (
     <div>
@@ -83,6 +83,7 @@ function Layout() {
               deleteCard={deleteCard}
               updateDeck={updateDeck}
               deleteDeck={deleteDeck}
+              
             />
           </Route>
 

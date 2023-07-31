@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useRouteMatch, useLocation } from "react-router-dom";
+import { Link, useRouteMatch, useLocation, useHistory } from "react-router-dom";
 import CardList from "../Deck/CardList";
 import AddCard from "../Deck/AddCard";
 import EditCard from "../Deck/EditCard";
@@ -26,6 +26,7 @@ function DeckProfile({
   const { url } = useRouteMatch();
   const { deckId } = useParams();
   let location = useLocation();
+  const history = useHistory();
 
   const [deckData, setDeckData] = useState({});
   const [cardData, setCardData] = useState([]);
@@ -53,13 +54,15 @@ function DeckProfile({
     ) {
       deleteCard(cardId).then();
       const updatedCardData = cardData.filter((c) => c.id !== Number(cardId));
-      setCardData(() => updatedCardData);
+      setCardData(updatedCardData);
     }
   }
 
-  const deleteHandler = (event) => {
+  const deleteHandler = (id) => {
     if(window.confirm("Delete this deck?\nYou will not be able to recover it.")){
-      deleteDeck(event.target.id).then();
+      deleteDeck(id).then();
+
+    history.push('/')
   }};
 
 
@@ -98,7 +101,7 @@ function DeckProfile({
                 </button>
               </div>
               <div className="btn-group">
-                <button type="button" id={deckData.name} onClick={deleteHandler} className="btn btn-danger text-white">
+                <button type="button" id={deckData.id} onClick={()=>deleteHandler(deckData.id)} className="btn btn-danger text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -132,12 +135,12 @@ function DeckProfile({
           <EditCard url={url} editCard={editCard} readCard={readCard} />
         </Route>
         <Route path={`${url}/edit`}>
-          <EditDeck
+          {deckData.id&&<EditDeck
             setCurrentPath={setCurrentPath}
             editDeck={editDeck}
             currentDeck={deckData}
             deckId={deckId}
-          />
+          />}
         </Route>
 
         <Route path={`${url}/study`}>
