@@ -2,6 +2,7 @@ import React from "react";
 import { Link, matchPath } from "react-router-dom";
 
 function BreadCrumb({ location, decks }) {
+
   const routes = [
     { path: "/", name: "Home" },
     { path: "/decks/new", name: "Create Deck" },
@@ -54,7 +55,11 @@ function BreadCrumb({ location, decks }) {
           </li>
           {matchedRoutes.map((route, index) => (
             <li key={index} className="breadcrumb-item">
-              <Link to={route.path}>{route.name}</Link>
+              {route.path === location.pathname ? (
+                <span>{route.name}</span>
+              ) : (
+                <Link to={route.path}>{route.name}</Link>
+              )}
             </li>
           ))}
         </ol>
