@@ -2,7 +2,7 @@
 
 This is a flash card application, Flashcard-o-matic, to help students study online. Teachers will use this application to create decks of flash cards for the subjects that they teach, and students will study the decks.
 
-##Start
+## Start
 Click [HERE](https://flashcard-o-matic-vr6s.onrender.com) to view live website and create your own deck to start an exciting journey!
 
 
