@@ -2,7 +2,6 @@ import React from "react";
 import { Link, matchPath } from "react-router-dom";
 
 function BreadCrumb({ location, decks }) {
-
   const routes = [
     { path: "/", name: "Home" },
     { path: "/decks/new", name: "Create Deck" },
@@ -36,6 +35,11 @@ function BreadCrumb({ location, decks }) {
             );
             if (deck) {
               return { path, name: deck.name };
+            }
+          } else if (route.path === "/decks/:deckId/cards/:cardId/edit") {
+            const cardId = Number(match.params.cardId);
+            if (cardId) {
+              return { path, name: `Edit Card ${cardId}` };
             }
           } else {
             return { path, name: route.name };

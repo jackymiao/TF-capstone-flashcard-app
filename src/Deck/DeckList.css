@@ -1,3 +1,8 @@
 .button{
     margin-right:2em;
 }
+
+button.create-deck{
+    margin-bottom:2em;
+    border:1px solid red;
+}

@@ -8,7 +8,7 @@ import {
   useLocation,
   useHistory
 } from "react-router-dom";
-
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import {
@@ -22,6 +22,7 @@ import {
   updateCard,
   deleteCard,
 } from "../utils/api/index";
+
 
 import DeckList from "../Deck/DeckList";
 import DeckProfile from "../Deck/DeckProfile";
@@ -77,7 +78,6 @@ function Layout() {
               useState={useState}
               readDeck={readDeck}
               createCard={createCard}
-              ß
               updateCard={updateCard}
               readCard={readCard}
               deleteCard={deleteCard}
