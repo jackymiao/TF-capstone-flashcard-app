@@ -30,30 +30,40 @@ function EditCard({url, editCard, readCard}) {
   
     return (
       <div>
-        <form onSubmit={submitHandler}>
           <h1>Edit Card</h1>
-          <label>
+        <form onSubmit={submitHandler}>
+        <div className="mb-3">
+
+ <label htmlFor="front" className="form-label">
             Front
+            </label>
             <textarea
               name="front"
               id="front"
               defaultValue={formData.front}
               onChange={changeHandler}
+              className="form-control"
             />
-          </label>
-          <label>
+        </div>
+         
+        <div className="mb-3">
+
+          <label htmlFor="back" className="form-label">
             Back
+            </label>
             <textarea
               name="back"
               id="back"
               defaultValue={formData.back}
               onChange={changeHandler}
+              className="form-control"
             />
-          </label>
-          <button type="button" onClick={() => history.push(url)}>
+        </div>
+
+          <button type="button" onClick={() => history.push(url)} className="btn btn-secondary button">
             Cancel
           </button>
-          <button type="submit">Save</button>
+          <button type="submit" className="btn btn-primary">Save</button>
         </form>
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import NoStudyCard from "./NoStudyCard";
-import StudyCard from "./StudyCard";
+import NoStudyCard from "../Study/NoStudyCard";
+import StudyCard from "../Study/StudyCard";
 
 function Study({ cardData, name, cardNum, url }) {
   const history = useHistory();
