@@ -7,10 +7,10 @@ Click [HERE](https://flashcard-o-matic-vr6s.onrender.com) to view live website a
 
 
 ## Description
--Home: Shows a list of decks with options to create, study, view, or delete a deck
--Study: Allows the user to study the cards from a specified deck
--Create Deck: Allows the user to create a new deck
--Deck: Shows all of the information about a specified deck with options to edit or add cards to the deck, navigate to the study screen, or delete the deck
--Edit Deck: Allows the user to modify information on an existing deck
--Add Card: 	Allows the user to add a new card to an existing deck
--Edit Card: Allows the user to modify information on an existing card
+- Home: Shows a list of decks with options to create, study, view, or delete a deck
+- Study: Allows the user to study the cards from a specified deck
+- Create Deck: Allows the user to create a new deck
+- Deck: Shows all of the information about a specified deck with options to edit or add cards to the deck, navigate to the study screen, or delete the deck
+- Edit Deck: Allows the user to modify information on an existing deck
+- Add Card: 	Allows the user to add a new card to an existing deck
+- Edit Card: Allows the user to modify information on an existing card
