@@ -14,11 +14,8 @@ function StudyCard(
         Card {chooseCardId + 1} of {cardNum}
       </h3>
 
-      {fliped && <div className="card-text">{cardData[chooseCardId].back}</div>}
+      {fliped ? <div className="card-text">{cardData[chooseCardId].back}</div>:<div className="card-text">{cardData[chooseCardId].front}</div>}
 
-      {!fliped && (
-        <div className="card-text">{cardData[chooseCardId].back}</div>
-      )}
 
       <button
         onClick={flipHandler}

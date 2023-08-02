@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import "./AddCard.css";
 
-function AddCard({ deckName, addCard, deckId, setCurrentPath, url }) {
+function AddCard({ deckName, addCard, deckId, url }) {
   const history = useHistory();
   const initialFormData = {
     deckId: Number(deckId),

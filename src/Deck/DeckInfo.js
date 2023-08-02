@@ -13,12 +13,12 @@ function DeckInfo({deckData, url, deleteHandler, Link}){
       <div className="btn-group" role="group" aria-label="First group">
         <button className="btn btn-secondary button rounded">
           <Link to={`${url}/edit`} className="text-white">
-          <i class="bi bi-pencil"> Edit</i> 
+          <i className="bi bi-pencil"> Edit</i> 
           </Link>
         </button>
         <button className="btn btn btn-primary rounded button">
           <Link to={`${url}/study`} className="text-white">
-          <i class="bi bi-book"> Study</i>
+          <i className="bi bi-book"> Study</i>
           </Link>
         </button>
         <button className="btn btn btn-primary rounded">

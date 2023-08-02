@@ -21,7 +21,6 @@ function DeckProfile({
   readCard,
   deleteCard,
   updateDeck,
-  setCurrentPath,
   deleteDeck,
 }) {
   const { url } = useRouteMatch();
@@ -91,12 +90,7 @@ function DeckProfile({
           />
         </Route>
         <Route path={`${url}/cards/new`}>
-          <AddCard
-            addCard={addCard}
-            deckName={deckData.name}
-            url={url}
-            setCurrentPath={setCurrentPath}
-          />
+          <AddCard addCard={addCard} deckName={deckData.name} url={url} />
         </Route>
         <Route path={`${url}/cards/:cardId/edit`}>
           <EditCard url={url} editCard={editCard} readCard={readCard} />
@@ -104,7 +98,6 @@ function DeckProfile({
         <Route path={`${url}/edit`}>
           {deckData.id && (
             <EditDeck
-              setCurrentPath={setCurrentPath}
               editDeck={editDeck}
               currentDeck={deckData}
               deckId={deckId}

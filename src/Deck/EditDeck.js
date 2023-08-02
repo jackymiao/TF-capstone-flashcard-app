@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 
-function EditDeck({ setCurrentPath, editDeck, currentDeck}) {
+function EditDeck({ editDeck, currentDeck}) {
     const { url } = useRouteMatch();
     
     
@@ -19,8 +19,6 @@ function EditDeck({ setCurrentPath, editDeck, currentDeck}) {
     function submitHandler(event) {
         event.preventDefault();
         editDeck(formData);
-        console.log(url)
-        setCurrentPath(url);
         history.goBack();
     }
   
