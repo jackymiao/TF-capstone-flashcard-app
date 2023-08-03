@@ -54,6 +54,7 @@ function AddCard({ deckName, addCard, deckId, url }) {
         submitHandler={submitHandler}
         buttonOnLeft={buttonOnLeft}
         buttonOnRight={buttonOnRight}
+        header="Add Card"
       />
     </div>
   );
