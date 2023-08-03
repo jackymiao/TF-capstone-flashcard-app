@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 
 function EditDeck({ editDeck, currentDeck}) {
-    const { url } = useRouteMatch();
+
     
     
     const history = useHistory();

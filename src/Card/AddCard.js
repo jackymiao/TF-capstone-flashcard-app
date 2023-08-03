@@ -10,7 +10,6 @@ function AddCard({ deckName, addCard, deckId, url }) {
     front: "Front side of card",
     back: "Backside of card",
   };
-  const [formData, setFormData] = useState(initialFormData);
 
   const [click, setClick] = useState("");
 

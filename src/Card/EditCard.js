@@ -12,17 +12,6 @@ function EditCard({ url, editCard, readCard }) {
     readCard(cardId).then((card) => setCardData(card));
   }, []);
 
-  // const changeHandler = (event) => {
-  //   setCardData({
-  //     ...cardData,
-  //     [event.target.name]: event.target.value
-  //   });
-  // };
-
-  // const submitHandler = (event) =>{
-  //   editCard(cardData)
-  //   history.push(url)
-  // }
 
   const submitHandler = (updatedCardData) => {
     editCard(updatedCardData);
