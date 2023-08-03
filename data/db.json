@@ -9,6 +9,21 @@
       "name": "this is a new deck",
       "description": "new deck new content another new content",
       "id": 2
+    },
+    {
+      "name": "another new deck",
+      "description": "new deck",
+      "id": 3
+    },
+    {
+      "name": "Rendering in React 02",
+      "description": "new deck",
+      "id": 4
+    },
+    {
+      "name": "let's create a new deck",
+      "description": "this is a good deck",
+      "id": 5
     }
   ],
   "cards": [
@@ -29,6 +44,36 @@
       "front": "card1",
       "back": "card1 back",
       "id": 3
+    },
+    {
+      "deckId": 1,
+      "front": "this is a new card",
+      "back": "this is the back of new card",
+      "id": 4
+    },
+    {
+      "deckId": 1,
+      "front": "this is another new card",
+      "back": "this is the back of another new card",
+      "id": 5
+    },
+    {
+      "deckId": 5,
+      "front": "new card front edited1",
+      "back": "new card back",
+      "id": 6
+    },
+    {
+      "deckId": 5,
+      "front": "new card 2 front edited",
+      "back": "new card 2 back",
+      "id": 7
+    },
+    {
+      "deckId": 5,
+      "front": "new card 3 front edited more",
+      "back": "new card 3 back",
+      "id": 8
     }
   ]
 }

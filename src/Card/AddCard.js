@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import "./AddCard.css";
+import CardForm from "./CardForm";
 
 function AddCard({ deckName, addCard, deckId, url }) {
   const history = useHistory();
   const initialFormData = {
     deckId: Number(deckId),
-    front: "",
-    back: "",
+    front: "Front side of card",
+    back: "Backside of card",
   };
   const [formData, setFormData] = useState(initialFormData);
 
@@ -20,70 +21,40 @@ function AddCard({ deckName, addCard, deckId, url }) {
     setClick(event.target.name);
   }
 
-  const changeHandler = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const buttonOnLeft = (
+    <button
+      name="done"
+      type="submit"
+      onClick={doneButton}
+      className="btn btn-secondary button"
+    >
+      Done
+    </button>
+  );
+  const buttonOnRight = (
+    <button
+      name="save"
+      type="submit"
+      onClick={saveButton}
+      className="btn btn-primary"
+    >
+      Save
+    </button>
+  );
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    addCard(formData);
+  const submitHandler = (newCardData) => {
+    addCard(newCardData);
     click === "done" ? history.push("/") : history.push(url);
   };
 
   return (
     <div>
-      <h1>{`${deckName}`}</h1>
-      <h1>Add Card</h1>
-      <form onSubmit={submitHandler}>
-        <div className="mb-3">
-          <label htmlFor="front" className="form-label">
-            Front
-          </label>
-          <textarea
-            name="front"
-            id="front"
-            type="text"
-            value={formData.front}
-            onChange={changeHandler}
-            placeholder="Front side of card"
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="back" className="form-label">
-            Back
-          </label>
-          <textarea
-            name="back"
-            id="back"
-            type="text"
-            value={formData.back}
-            onChange={changeHandler}
-            placeholder="Back side of card"
-            className="form-control"
-          />
-        </div>
-        
-        <button
-          name="done"
-          type="submit"
-          onClick={doneButton}
-          className="btn btn-secondary button"
-        >
-          Done
-        </button>
-        <button
-          name="save"
-          type="submit"
-          onClick={saveButton}
-          className="btn btn-primary"
-        >
-          Save
-        </button>
-      </form>
+      <CardForm
+        initialFormData={initialFormData}
+        submitHandler={submitHandler}
+        buttonOnLeft={buttonOnLeft}
+        buttonOnRight={buttonOnRight}
+      />
     </div>
   );
 }

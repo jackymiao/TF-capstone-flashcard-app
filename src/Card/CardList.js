@@ -21,7 +21,7 @@ function CardList({ cardData, url, deleteCardById }) {
                       to={`${url}/cards/${card.id}/edit`}
                       className="text-white"
                     >
-                      <i class="bi bi-pencil"> Edit</i> 
+                      <i className="bi bi-pencil"> Edit</i> 
                     </Link>
                   </button>
                   <button
