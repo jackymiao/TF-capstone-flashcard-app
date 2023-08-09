@@ -39,6 +39,7 @@ function CardForm({
             value={formData.front}
             onChange={changeHandler}
             className="form-control"
+            required
           />
         </div>
 
@@ -53,6 +54,7 @@ function CardForm({
             defaultValue={formData.back}
             onChange={changeHandler}
             className="form-control"
+            required
           />
         </div>
         {buttonOnLeft}

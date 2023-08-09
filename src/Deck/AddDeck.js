@@ -44,6 +44,7 @@ function AddDeck({addDeck, homeUrl}) {
             value={formData.name}
             onChange={changeHandler}
             className="form-control"
+            required
           />
 
 </div>
@@ -58,6 +59,7 @@ function AddDeck({addDeck, homeUrl}) {
             value={formData.description}
             onChange={changeHandler}
             className="form-control"
+            required
           />
 
 </div>
