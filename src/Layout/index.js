@@ -36,9 +36,9 @@ function Layout() {
   const history = useHistory();
 
   useEffect(() => {
-    listDecks().then((dataFromApi) => setDeckData(dataFromApi));
+    listDecks().then((dataFromApi) =>setDeckData(dataFromApi.data) );
   }, [location]);
-
+//
   // useEffect(() => {
   //   listDecks().then((dataFromApi) => setDeckData(dataFromApi));
   // }, [deckData]);

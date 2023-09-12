@@ -19,7 +19,7 @@ function DeckList({ deckData, Link, deleteDeck, setDeckData}) {
     <div key={deck.id} className="card-body border">
       <div className="d-flex flex-row justify-content-between">
         <h1 className="card-title">{deck.name}</h1>
-        <p className="text-muted">{`${deck.cards.length} cards`}</p>
+        <p className="text-muted">{deck.cards?`${deck.cards.length} cards`:"nothing"}</p>
       </div>
       <p className="card-text">{deck.description}</p>
 
