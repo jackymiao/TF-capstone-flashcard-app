@@ -9,9 +9,18 @@ function EditCard({ url, editCard, readCard }) {
   const [cardData, setCardData] = useState({});
 
   useEffect(() => {
-    readCard(cardId).then((card) => setCardData(card));
-  }, []);
-
+    //readCard(cardId).then((card) => setCardData(card));
+      async function fetchData() {
+        try {
+          const card = await readCard(cardId);
+          setCardData(card.data);
+        } catch (error) {
+          // Handle errors here
+          console.error('Error setting card data:', error);
+        }
+      } 
+      fetchData();
+  }, [history]);
 
   const submitHandler = (updatedCardData) => {
     editCard(updatedCardData);
@@ -34,8 +43,8 @@ function EditCard({ url, editCard, readCard }) {
   );
   return (
     <div>
-      {cardData.id && (
-        <CardForm
+
+        {cardData.id&&<CardForm
           initialFormData={cardData}
           submitHandler={submitHandler}
           history={history}
@@ -43,8 +52,8 @@ function EditCard({ url, editCard, readCard }) {
           header="Edit Card"
           buttonOnLeft={buttonOnLeft}
           buttonOnRight={buttonOnRight}
-        />
-      )}
+        />}
+
     </div>
   );
 }

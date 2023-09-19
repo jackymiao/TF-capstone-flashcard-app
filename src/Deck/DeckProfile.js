@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useRouteMatch, useLocation, useHistory } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import CardList from "../Card/CardList";
 import AddCard from "../Card/AddCard";
 import EditCard from "../Card/EditCard";
@@ -30,14 +30,35 @@ function DeckProfile({
 
   const [deckData, setDeckData] = useState({});
   const [cardData, setCardData] = useState([]);
-
+//solution, use then return the data, and use data in next then
   useEffect(() => {
-    readDeck(deckId).then((deck) => setDeckData(deck));
     readDeck(deckId)
-      .then((deck) => deck.cards)
-      .then((cards) => setCardData(cards));
+  .then((deck) => {
+    setDeckData(deck.data);
+    return deck; // Return the deck object to pass it to the next .then()
+  })
+  .then((deck) => {
+    if (deck.data.cards) {
+      setCardData(deck.data.cards);
+    }
+  })
+  .catch((error) => {
+    // Handle errors here
+    console.error('Error:', error);
+  });
+    //readDeck(deckId).then(deck=>setDeckData(deck.data)).then(deck=>setCardData(deck.data.cards));
   }, [location]);
+  //(deck) => setDeckData(deck.data)
+  // useEffect(()=>{
+  //   setCardData(deckData.cards)
+  // },[deckData])
+  //check deckDdata
 
+  //check cardData
+
+  //readDeck(deckId)
+  // .then((deck) => deck.data.cards)
+  // .then((cards) => setCardData(cards));
   const cardNum = cardData.length;
   function addCard(newCard) {
     createCard(deckId, newCard).then();
@@ -83,11 +104,11 @@ function DeckProfile({
             Link={Link}
           />
 
-          <CardList
+          {cardData.length>0&&<CardList
             cardData={cardData}
             url={url}
             deleteCardById={deleteCardById}
-          />
+          />}
         </Route>
         <Route path={`${url}/cards/new`}>
           <AddCard addCard={addCard} deckName={deckData.name} url={url} />

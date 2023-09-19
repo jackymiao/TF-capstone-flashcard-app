@@ -6,7 +6,6 @@ import {
   Link,
   useParams,
   useLocation,
-  useHistory
 } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Header from "./Header";
@@ -33,11 +32,22 @@ function Layout() {
   const { url } = useRouteMatch();
   const [deckData, setDeckData] = useState([]);
   let location = useLocation();
-  const history = useHistory();
 
   useEffect(() => {
-    listDecks().then((dataFromApi) =>setDeckData(dataFromApi.data) );
-  }, [location]);
+    async function fetchData() {
+      try {
+        const dataFromApi = await listDecks();
+        setDeckData(dataFromApi.data);
+      } catch (error) {
+        // Handle errors here
+        console.error('Error fetching data:', error);
+      }
+    }
+    
+    // Call the async function
+    fetchData();    
+  }, []);
+  //!!! don't use location to see what will happen
 //
   // useEffect(() => {
   //   listDecks().then((dataFromApi) => setDeckData(dataFromApi));
@@ -60,7 +70,7 @@ function Layout() {
         {/* TODO: Implement the screen starting here */}
         <Switch>
           <Route path="/" exact>
-            <DeckList deckData={deckData} Link={Link} deleteDeck={deleteDeck} setDeckData={setDeckData} />
+            {deckData.length>0&&<DeckList deckData={deckData} Link={Link} deleteDeck={deleteDeck} setDeckData={setDeckData} />}
           </Route>
 
           <Route path="/decks/new">

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./AddCard.css";
 import CardForm from "./CardForm";
 
 function AddCard({ deckName, addCard, deckId, url }) {
   const history = useHistory();
   const initialFormData = {
-    deckId: Number(deckId),
+    deckId: deckId,
     front: "Front side of card",
     back: "Backside of card",
   };
